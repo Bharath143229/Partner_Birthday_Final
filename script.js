@@ -659,45 +659,47 @@ async function makeWish() {
         return;
     }
 
+    // Save the wish before clearing the input
+    const wishToSave = wish;
+
+    // Immediately show success
+    document.getElementById("wishText").innerText =
+        "Your wish has been made. ✨";
+
+    input.value = "";
+
     if (button) {
         button.disabled = true;
-        button.textContent = "Sending...";
+        button.textContent = "Wish Made ❤️";
     }
 
-    let saved = false;
+    // Immediately go to fireworks
+    showScreen("fireworksScreen");
+    launchFireworks();
 
+    // Save to Google Sheets in the background
     if (!WISH_API_URL.includes("PASTE_YOUR")) {
         try {
-            await fetch(WISH_API_URL, {
+            fetch(WISH_API_URL, {
                 method: "POST",
                 mode: "no-cors",
                 headers: {
                     "Content-Type": "text/plain;charset=utf-8"
                 },
-                body: JSON.stringify({ wish })
+                body: JSON.stringify({
+                    wish: wishToSave
+                })
+            }).then(() => {
+                console.log("Wish saved to Google Sheets.");
+            }).catch((error) => {
+                console.error("Wish save error:", error);
             });
-            saved = true;
+
         } catch (error) {
             console.error("Wish save error:", error);
         }
     }
-
-    document.getElementById("wishText").innerText =
-        saved
-            ? "Your wish has been made. ✨"
-            : "Your wish has been made. ✨";
-
-    input.value = "";
-
-    if (button) {
-        button.disabled = false;
-        button.textContent = "Make My Wish ✨";
-    }
-
-    showScreen("fireworksScreen");
-    launchFireworks();
 }
-
 
 /* ================= DOWNLOAD GREETING ================= */
 
