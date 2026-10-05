@@ -228,21 +228,21 @@ function replaySurprise() {
 
         const button = event.target.closest("button");
 
-if (!button) return;
+        if (!button || button.disabled) {
+            return;
+        }
 
-// Replay uses the normal browser click
-if (button.id === "replayButton") {
-    return;
-}
+        // Replay button uses its normal click/touch behavior.
+        if (button.id === "replayButton") {
+            return;
+        }
 
-if (button.disabled) return;
-        if (button.dataset.singleTapHandled === "1") return;
+        if (button.dataset.singleTapHandled === "1") {
+            return;
+        }
 
         button.dataset.singleTapHandled = "1";
 
-        // Run the existing onclick/event-listener logic immediately.
-        // Set the suppression flag only AFTER this synthetic click so
-        // that the synthetic click itself is not blocked.
         button.click();
         suppressNextClick = true;
 
@@ -256,13 +256,21 @@ if (button.disabled) return;
     }, { passive: true });
 
     document.addEventListener("click", function (event) {
-        if (!suppressNextClick) return;
+        if (!suppressNextClick) {
+            return;
+        }
 
         const button = event.target.closest("button");
-        if (!button) return;
 
-        // Ignore the delayed browser-generated click after our
-        // single-tap action has already run.
+        if (!button) {
+            return;
+        }
+
+        // Never suppress Replay's click.
+        if (button.id === "replayButton") {
+            return;
+        }
+
         event.preventDefault();
         event.stopImmediatePropagation();
     }, true);
