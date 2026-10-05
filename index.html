@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>For My Partner ❤️</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     MUSIC
+     ===================================================== -->
+
+<audio
+    id="birthdayMusic"
+    loop
+>
+
+    <source
+        src="music/birthday-song.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<button
+    id="musicButton"
+    class="music-button"
+    onclick="toggleMusic()"
+>
+    🎵 Music
+</button>
+
+
+
+<!-- =====================================================
+     OPENING
+     ===================================================== -->
+
+<section
+    id="opening"
+    class="screen active"
+>
+
+    <div id="opening-heart">
+        ❤️
+    </div>
+
+    <h1>
+        Hey Partner...
+    </h1>
+
+    <p>
+        I made something<br>
+        especially for you.
+    </p>
+
+    <button
+        onclick="showScreen('passwordScreen')"
+    >
+        Open Your Surprise 🎁
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     PASSWORD
+     ===================================================== -->
+
+<section
+    id="passwordScreen"
+    class="screen"
+>
+
+    <div class="lock">
+        🔐
+    </div>
+
+    <h1>
+        A Little Secret
+    </h1>
+
+    <p>
+        Before you continue...
+    </p>
+
+    <p class="hint">
+        What do I always call you? 👀
+    </p>
+
+    <input
+        id="passwordInput"
+        type="text"
+        placeholder="Enter password"
+        autocomplete="off"
+    >
+
+    <button
+        onclick="checkPassword()"
+    >
+        Unlock ❤️
+    </button>
+
+    <p id="passwordError"></p>
+
+</section>
+
+
+
+<!-- =====================================================
+     COUNTDOWN
+     ===================================================== -->
+
+<section
+    id="countdownScreen"
+    class="screen"
+>
+
+    <div class="sparkle">
+        ✨
+    </div>
+
+    <h1>
+        Something is Coming...
+    </h1>
+
+    <p>
+        Your special day is getting closer.
+    </p>
+
+    <div id="countdown">
+
+        <div>
+            <span id="days">00</span>
+            <small>Days</small>
+        </div>
+
+        <div>
+            <span id="hours">00</span>
+            <small>Hours</small>
+        </div>
+
+        <div>
+            <span id="minutes">00</span>
+            <small>Minutes</small>
+        </div>
+
+        <div>
+            <span id="seconds">00</span>
+            <small>Seconds</small>
+        </div>
+
+    </div>
+
+    <button
+        onclick="showScreen('memoriesScreen'); startMusic();"
+    >
+        Continue ✨
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     MEMORIES
+     ===================================================== -->
+
+<section
+    id="memoriesScreen"
+    class="screen memory-screen"
+>
+
+    <h1>
+        Her Little Memories ❤️
+    </h1>
+
+    <p class="section-subtitle">
+        A few beautiful moments of you...
+    </p>
+
+    <div
+        class="memory-slideshow"
+        aria-live="polite"
+    >
+
+        <div class="memory-photo-wrap">
+
+            <img
+                id="memoryImage"
+                src="photos/photo01.jpg"
+                alt="Prasanna memory 1"
+            >
+
+        </div>
+
+        <div class="memory-quote-wrap">
+
+            <p
+                id="memoryQuote"
+                class="memory-quote"
+            >
+                Some smiles are impossible to forget. ❤️
+            </p>
+
+        </div>
+
+        <div class="memory-progress-row">
+
+            <span id="memoryNumber">
+                01
+            </span>
+
+            <div class="memory-progress-track">
+
+                <div id="memoryProgress"></div>
+
+            </div>
+
+            <span>
+                10
+            </span>
+
+        </div>
+
+    </div>
+
+    <button
+        id="nextMemoryButton"
+        type="button"
+    >
+        Next Memory →
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     BIRTHDAY CAKE
+     ===================================================== -->
+
+<section
+    id="cakeScreen"
+    class="screen cake-screen"
+>
+
+    <div class="cake-header">
+        <h1>A Birthday Cake For You 🎂</h1>
+        <p id="cakeInstruction" class="cake-instruction">22 candles for your 22nd birthday ✨</p>
+    </div>
+
+    <div class="cake-stage" id="cakeStage" aria-label="Animated birthday cake with 22 candles">
+
+        <div class="cake-scale">
+
+            <div class="cake-real-glow" aria-hidden="true"></div>
+            <div class="cake-candle-glow" aria-hidden="true"></div>
+            <div class="cake-plate-real" aria-hidden="true"></div>
+
+            <div class="cake-art-slot" id="cakeArtSlot">
+                <div class="cake-art" id="birthdayCake">
+                    <div class="tier tier-low"><i class="gloss"></i></div>
+                    <div class="rim rim-low"></div>
+                    <div class="tier tier-up"><i class="gloss"></i><i class="band"></i></div>
+                    <div class="rim rim-up"></div>
+                    <div class="ornament-layer" id="cakeOrnaments" aria-hidden="true"></div>
+                    <div class="cake-number-real">22</div>
+                    <div class="candle-holder" id="candleHolder" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <div class="cake-cut-line" id="cakeCutLine" aria-hidden="true"></div>
+
+            <div class="cake-knife" id="cakeKnife" aria-hidden="true">
+                <span class="knife-handle"></span>
+                <span class="knife-guard"></span>
+                <span class="knife-blade"></span>
+            </div>
+
+            <div class="cake-smoke-real" id="cakeSmokeLayer" aria-hidden="true"></div>
+            <div class="cake-sparkle-layer" id="cakeCutGlow" aria-hidden="true"></div>
+
+        </div>
+
+    </div>
+
+    <div class="cake-actions">
+        <button id="wishBlowButton" type="button">
+            💨 Make a Wish &amp; Blow
+        </button>
+        <button id="cutCakeButton" type="button" hidden>
+            🔪 Cut the Cake
+        </button>
+        <button id="cakeContinueButton" type="button" hidden>
+            Continue ✨
+        </button>
+    </div>
+
+    <p id="cakeStatus" class="cake-status" aria-live="polite">Make a wish, then blow out all 22 candles. ✨</p>
+
+</section>
+
+
+
+<!-- =====================================================
+     ENVELOPE
+     ===================================================== -->
+
+<section
+    id="envelopeScreen"
+    class="screen envelope-screen"
+>
+
+    <div class="envelope-intro">
+        <div class="tiny-hearts">♡ ♥ ♡</div>
+        <h1>One little letter for you... 💌</h1>
+        <p>Something I wrote especially for you.</p>
+    </div>
+
+    <button
+        id="envelopeButton"
+        class="envelope-button"
+        type="button"
+        onclick="openEnvelope()"
+        aria-label="Open the birthday letter"
+    >
+        <span class="env-wrap">
+            <span class="env-back"></span>
+            <span class="env-paper">Dear Partner,</span>
+            <span class="env-pocket-l"></span>
+            <span class="env-pocket-r"></span>
+            <span class="env-pocket-b"></span>
+            <span class="env-flap"></span>
+            <span class="env-seal">❤️</span>
+        </span>
+    </button>
+
+    <button
+        id="envelopeOpenCta"
+        class="env-cta"
+        type="button"
+        onclick="openEnvelope()"
+    >
+        💌 Open the Letter
+    </button>
+
+    <p id="envelopeHint" class="envelope-hint">Tap the envelope to open it ✨</p>
+
+</section>
+
+
+<!-- =====================================================
+     LETTER
+     ===================================================== -->
+
+<section
+    id="letterScreen"
+    class="screen scroll-screen"
+>
+
+
+    <div class="letter">
+
+
+        <div class="letter-title">
+            Dear Partner,
+        </div>
+
+
+        <p>
+            Happy Birthday, Prasanna. ❤️🎂
+        </p>
+
+
+        <p>
+            I honestly don't know how to put everything I feel into words,
+            but on your special day, I still wanted to try and write
+            something from my heart.
+        </p>
+
+
+        <p>
+            We've known each other since our school days,
+            and somehow, even after all these years,
+            you're still someone very special to me.
+        </p>
+
+
+        <p>
+            Life changed, time passed,
+            and we ended up far away from those school days…
+            but some connections don't disappear
+            just because time passes.
+        </p>
+
+
+        <p>
+            We've shared so many conversations, memories, laughs,
+            and little moments over the years.
+            Even though we still haven't been able to meet after all this time,
+            I'm genuinely grateful that you're still a part of my life.
+        </p>
+
+
+        <p>
+            I've always wanted to hear your voice,
+            have a real conversation with you,
+            and finally meet you after all these years.
+            I really hope that day comes soon. ❤️
+        </p>
+
+
+        <p>
+            I don't know what the future holds,
+            but I hope we continue to create more beautiful memories,
+            have more conversations,
+            and finally get that chance to meet someday.
+        </p>
+
+
+        <p>
+            I hope this new year of your life brings you countless reasons
+            to smile, beautiful memories, good health, success,
+            and everything you've been wishing for.
+        </p>
+
+
+        <p>
+            Stay the same wonderful person you are.
+        </p>
+
+
+        <p>
+            Happy Birthday once again, Partner. ❤️🎂
+        </p>
+
+
+        <div class="signature">
+            — From your Partner ❤️
+        </div>
+
+
+    </div>
+
+
+    <button
+        id="letterNextButton"
+        type="button"
+        onclick="showScreen('giftScreen')"
+    >
+        One Last Thing... ✨
+    </button>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     GIFT
+     ===================================================== -->
+
+<section
+    id="giftScreen"
+    class="screen gift-screen"
+>
+
+    <div class="gift-intro">
+        <div class="tiny-hearts">♡ ♥ ♡</div>
+        <h1>One Last Thing... 🎁</h1>
+        <p>I saved one more little surprise for you.</p>
+    </div>
+
+    <button
+        id="giftButton"
+        class="gift-button"
+        type="button"
+        onclick="openGift()"
+        aria-label="Open the birthday gift"
+    >
+        <span class="gift-box">
+            <span class="gift-lid"></span>
+            <span class="gift-body"></span>
+            <span class="gift-ribbon-v"></span>
+            <span class="gift-ribbon-h"></span>
+            <span class="gift-bow left"></span>
+            <span class="gift-bow right"></span>
+        </span>
+    </button>
+
+    <p id="giftHint" class="gift-hint">Tap the gift 🎀</p>
+
+    <div id="giftReveal" class="gift-reveal" aria-live="polite">
+        <div class="gift-reveal-icon">💌</div>
+        <h2>A little surprise for you ❤️</h2>
+        <p>Just a tiny reminder that you are someone very special to me.</p>
+        <button id="giftBalloonButton" type="button" onclick="showScreen('balloonScreen')">
+            There is more... 🎈
+        </button>
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BALLOON SURPRISE
+     ===================================================== -->
+
+<section
+    id="balloonScreen"
+    class="screen balloon-screen"
+>
+
+    <div class="balloon-intro">
+        <div class="tiny-hearts">♡ ♥ ♡</div>
+        <h1>A few little surprises... 🎈</h1>
+        <p>Tap each balloon and see what is waiting inside. ✨</p>
+    </div>
+
+    <div class="balloon-field" id="balloonField">
+        <button class="surprise-balloon balloon-pink" type="button" onclick="openBalloon(0)" aria-label="Pop balloon 1">
+            <span class="balloon-shape">🎈</span>
+            <span class="balloon-number">1</span>
+        </button>
+        <button class="surprise-balloon balloon-purple" type="button" onclick="openBalloon(1)" aria-label="Pop balloon 2">
+            <span class="balloon-shape">🎈</span>
+            <span class="balloon-number">2</span>
+        </button>
+        <button class="surprise-balloon balloon-blue" type="button" onclick="openBalloon(2)" aria-label="Pop balloon 3">
+            <span class="balloon-shape">🎈</span>
+            <span class="balloon-number">3</span>
+        </button>
+        <button class="surprise-balloon balloon-peach" type="button" onclick="openBalloon(3)" aria-label="Pop balloon 4">
+            <span class="balloon-shape">🎈</span>
+            <span class="balloon-number">4</span>
+        </button>
+        <button class="surprise-balloon balloon-rose" type="button" onclick="openBalloon(4)" aria-label="Pop balloon 5">
+            <span class="balloon-shape">🎈</span>
+            <span class="balloon-number">5</span>
+        </button>
+        <button class="surprise-balloon balloon-lilac" type="button" onclick="openBalloon(5)" aria-label="Pop balloon 6">
+            <span class="balloon-shape">🎈</span>
+            <span class="balloon-number">6</span>
+        </button>
+    </div>
+
+    <div id="balloonMessage" class="balloon-message" aria-live="polite">
+        <span class="balloon-message-icon">✨</span>
+        <p>Pick a balloon... one of them might make you smile. ❤️</p>
+    </div>
+
+    <p id="balloonProgress" class="balloon-progress">0 / 6 surprises opened</p>
+
+    <button
+        id="balloonContinueButton"
+        class="hidden-balloon-button"
+        type="button"
+        onclick="showScreen('wishScreen')"
+    >
+        One final wish... 🕯️
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     WISH
+     ===================================================== -->
+
+<section
+    id="wishScreen"
+    class="screen"
+>
+
+
+    <div class="wish-icon">
+        🕯️
+    </div>
+
+
+    <h1>
+        Make a Wish
+    </h1>
+
+
+    <p>
+        Close your eyes for a moment...
+    </p>
+
+
+    <p>
+        Think of something you really want.
+    </p>
+
+
+    <p class="small-text">
+        You can write it here if you want to keep it with this little surprise. ❤️
+    </p>
+
+
+    <textarea
+        id="wishInput"
+        placeholder="Type your wish here..."
+    ></textarea>
+
+
+    <button
+        onclick="makeWish()"
+    >
+        Make My Wish ✨
+    </button>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     FIREWORKS
+     ===================================================== -->
+
+<section
+    id="fireworksScreen"
+    class="screen fireworks-screen"
+>
+
+
+    <canvas
+        id="fireworksCanvas"
+    ></canvas>
+
+
+    <div class="fireworks-content">
+
+
+        <div id="wishText"></div>
+
+
+        <div class="cake-final">
+
+            <div class="final-candle">
+
+                <div class="final-flame"></div>
+
+            </div>
+
+            🎂
+
+        </div>
+
+
+        <h1 id="birthdayFinal">
+            Happy Birthday, Prasanna ❤️
+        </h1>
+
+
+        <p>
+            I hope this birthday brings you beautiful memories,
+            countless reasons to smile,
+            and everything you've been wishing for. ❤️
+        </p>
+
+
+        <button
+            id="downloadGreeting"
+            type="button"
+            onclick="downloadGreetingFile()"
+        >
+            💌 Download My Greeting
+        </button>
+
+
+        <p
+            id="downloadStatus"
+            class="download-status"
+            aria-live="polite"
+        ></p>
+
+        <button id="replayButton" type="button" onclick="replaySurprise()">
+            🔁 Experience It Again
+        </button>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
