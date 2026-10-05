@@ -227,8 +227,15 @@ function replaySurprise() {
         }
 
         const button = event.target.closest("button");
-        if (!button || button.disabled) return;
 
+if (!button) return;
+
+// Replay uses the normal browser click
+if (button.id === "replayButton") {
+    return;
+}
+
+if (button.disabled) return;
         if (button.dataset.singleTapHandled === "1") return;
 
         button.dataset.singleTapHandled = "1";

@@ -2012,3 +2012,10 @@ button,
 #balloonScreen [class*="image"] {
     display: none !important;
 }
+#replayButton {
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 9999;
+    cursor: pointer;
+    touch-action: manipulation;
+}
