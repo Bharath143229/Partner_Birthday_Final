@@ -56,14 +56,32 @@
 </audio>
 
 
-<button
-    id="musicButton"
-    class="music-button"
-    onclick="toggleMusic()"
->
-    🎵 Music
-</button>
+<div class="music-controls">
+    <button
+        id="musicButton"
+        class="music-button"
+        type="button"
+        onclick="toggleMusic()"
+    >
+        🎵 Music
+    </button>
 
+    <div class="volume-control">
+        <span id="volumeIcon">🔊</span>
+
+        <input
+            id="volumeSlider"
+            type="range"
+            min="0"
+            max="100"
+            value="25"
+            step="1"
+            aria-label="Music volume"
+        >
+
+        <span id="volumeValue">25%</span>
+    </div>
+</div>
 
 
 <!-- =====================================================

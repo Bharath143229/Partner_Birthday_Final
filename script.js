@@ -411,10 +411,24 @@ const music =
 const musicButton =
     document.getElementById("musicButton");
 
+const volumeSlider =
+    document.getElementById("volumeSlider");
 
+const volumeValue =
+    document.getElementById("volumeValue");
+
+const volumeIcon =
+    document.getElementById("volumeIcon");
+
+
+// Default music volume = 25%
+music.volume = 0.25;
+
+
+// Start music
 function startMusic() {
 
-    music.volume = 0.45;
+    music.volume = Number(volumeSlider.value) / 100;
 
     music.play()
         .then(() => {
@@ -432,14 +446,24 @@ function startMusic() {
 }
 
 
+// Play / Pause music
 function toggleMusic() {
 
     if (music.paused) {
 
-        music.play();
+        music.play()
+            .then(() => {
 
-        musicButton.innerText =
-            "🔊 Music On";
+                musicButton.innerText =
+                    "🔊 Music On";
+
+            })
+            .catch(() => {
+
+                musicButton.innerText =
+                    "🎵 Tap Music";
+
+            });
 
     } else {
 
@@ -450,6 +474,44 @@ function toggleMusic() {
     }
 }
 
+
+// Volume control
+if (volumeSlider) {
+
+    volumeSlider.addEventListener("input", function () {
+
+        const volume =
+            Number(this.value) / 100;
+
+        music.volume = volume;
+
+
+        // Update percentage
+        if (volumeValue) {
+
+            volumeValue.innerText =
+                this.value + "%";
+        }
+
+
+        // Update volume icon
+        if (volumeIcon) {
+
+            if (volume === 0) {
+
+                volumeIcon.innerText = "🔇";
+
+            } else if (volume < 0.5) {
+
+                volumeIcon.innerText = "🔉";
+
+            } else {
+
+                volumeIcon.innerText = "🔊";
+            }
+        }
+    });
+}
 
 /* ================= HEARTS ================= */
 

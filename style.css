@@ -2022,3 +2022,76 @@ button,
     z-index: 100000 !important;
     touch-action: manipulation !important;
 }
+/* ================= MUSIC VOLUME CONTROL ================= */
+
+.music-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 8px 12px;
+    border-radius: 30px;
+
+    background: rgba(20, 10, 30, 0.72);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.music-controls .music-button {
+    position: static;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#volumeSlider {
+    width: 90px;
+    cursor: pointer;
+    accent-color: #ff4f9a;
+}
+
+#volumeValue {
+    min-width: 38px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: right;
+}
+
+#volumeIcon {
+    font-size: 15px;
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+    .music-controls {
+        top: 12px;
+        right: 12px;
+        padding: 7px 9px;
+        gap: 7px;
+    }
+
+    #volumeSlider {
+        width: 65px;
+    }
+
+    #volumeValue {
+        display: none;
+    }
+
+    .music-controls .music-button {
+        font-size: 13px;
+        padding: 8px 11px;
+    }
+}
